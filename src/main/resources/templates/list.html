@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Secure Page</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+
+<body>
+<div th:replace="base :: navlinks"></div>
+
+<h2>My Bullhorn Messages</h2>
+
+    <table>
+        <tr>
+            <th>Message</th>
+            <th>Sent By</th>
+            <th>Date Posted</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="message : ${messages}">
+            <td th:text="${message.content}"></td>
+            <td th:text="${message.username}"></td>
+            <td th:text="${message.postdate}"></td>
+
+            <td>
+                <a th:href="@{/update/{id}(id=${message.id})}">Update</a>   -
+                <!--<a th:href="@{/detail/{id}(id=${message.id})}">Details</a>-->
+                <a th:href="@{/delete/{id}(id=${message.id})}">Delete</a>
+
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
